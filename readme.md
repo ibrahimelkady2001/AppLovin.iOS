@@ -40,10 +40,6 @@ AppLovinSdkBindings.LoadRewardedAdWithAdidd(
     () => Console.WriteLine("Ad loaded"),
     () => Console.WriteLine("Ad failed to load")
 );
-
-bool isLoaded = AppLovinSdkBindings.RewardedAdLoaded().BoolValue;
-
-AppLovinSdkBindings.ShowRewardedAdWithAdid("YOUR_AD_UNIT_ID");
 ```
 
 ### Banner Ads
