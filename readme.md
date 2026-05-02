@@ -57,17 +57,26 @@ AppLovinSdkBindings.ShowRewardedAdWithAdid("YOUR_AD_UNIT_ID");
 
 ### Banner Ads
 
-Create and display banner ads:
+Create and display banner ads (requires platform-specific code):
 
 ```csharp
 // Create a banner view for a given ad unit
 var bannerView = AppLovinSdkBindings.GetBannerWithAdid("YOUR_AD_UNIT_ID");
+```
 
-// Add the banner to your layout
-Add(bannerView);
+In a MAUI page, use `ContentView` with a `HandlerChanged` event to add the native banner:
 
-// Load the banner
-AppLovinSdkBindings.LoadBannerWithView(bannerView);
+```csharp
+// XAML: <ContentView x:Name="bannerContainer" HeightRequest="50" />
+bannerContainer.HandlerChanged += (s, e) =>
+{
+    if (bannerContainer.Handler?.PlatformView is UIKit.UIView parentView)
+    {
+        var adView = AppLovinSdkBindings.GetBannerWithAdid("YOUR_AD_UNIT_ID");
+        parentView.AddSubview(adView);
+        AppLovinSdkBindings.LoadBannerWithView(adView);
+    }
+};
 ```
 
 ### App Open Ads
