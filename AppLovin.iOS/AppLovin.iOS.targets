@@ -13,5 +13,6 @@
       <ForceLoad>true</ForceLoad>
       <EmbedAndSign>true</EmbedAndSign>
     </NativeReference>
+    <Compile Include="$(MSBuildThisFileDirectory)../AppLovinBanner.cs" />
   </ItemGroup>
 </Project>
