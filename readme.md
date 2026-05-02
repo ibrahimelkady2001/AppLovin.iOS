@@ -8,7 +8,7 @@
 dotnet add package AppLovin.iOS
 ```
 
-Only compatible with `net10.0-ios` and `net10.0-maccatalyst` projects.
+Only compatible with `net10.0-ios` projects.
 
 ## Setup
 
@@ -91,3 +91,13 @@ AppLovinSdkBindings.ShowMeditationDebugger();
 - .NET 10+
 - iOS 15.0+
 - Xcode 16+
+
+---
+
+<p align="center">
+  <a href="https://paypal.me/ibrahimelkady1">
+    <img src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png" alt="Donate with PayPal" height="48">
+  </a>
+  <br>
+  <sub>If this project helped you, consider supporting my work ❤️</sub>
+</p>
