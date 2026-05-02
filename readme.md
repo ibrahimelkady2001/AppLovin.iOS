@@ -1,0 +1,93 @@
+# AppLovin.iOS
+
+.NET MAUI binding for the [AppLovin iOS SDK](https://www.applovin.com/). Supports interstitial, rewarded, banner, and app open ads.
+
+## Installation
+
+```
+dotnet add package AppLovin.iOS
+```
+
+Only compatible with `net10.0-ios` and `net10.0-maccatalyst` projects.
+
+## Setup
+
+Initialize the SDK with your AppLovin SDK key (found in your AppLovin dashboard):
+
+```csharp
+using AppLovin.iOS;
+
+AppLovinSdkBindings.ApplovininitWithSdkkey("YOUR_SDK_KEY");
+```
+
+Call this once at app startup, before loading any ads.
+
+## Ad Types
+
+### Interstitial Ads
+
+Show full-screen interstitial ads:
+
+```csharp
+// Show an interstitial ad
+AppLovinSdkBindings.ShowInterstitialAdWithAdid("YOUR_AD_UNIT_ID");
+```
+
+### Rewarded Ads
+
+Load and show rewarded video ads with callbacks:
+
+```csharp
+// Load a rewarded ad
+AppLovinSdkBindings.LoadRewardedAdWithAdidd("YOUR_AD_UNIT_ID");
+
+// Load with completion callbacks
+AppLovinSdkBindings.LoadRewardedAdWithAdidd(
+    "YOUR_AD_UNIT_ID",
+    () => Console.WriteLine("Ad loaded"),
+    () => Console.WriteLine("Ad failed to load")
+);
+
+// Check if a rewarded ad is loaded
+bool isLoaded = AppLovinSdkBindings.RewardedAdLoaded().BoolValue;
+
+// Show the rewarded ad
+AppLovinSdkBindings.ShowRewardedAdWithAdid("YOUR_AD_UNIT_ID");
+```
+
+### Banner Ads
+
+Create and display banner ads:
+
+```csharp
+// Create a banner view for a given ad unit
+var bannerView = AppLovinSdkBindings.GetBannerWithAdid("YOUR_AD_UNIT_ID");
+
+// Add the banner to your layout
+Add(bannerView);
+
+// Load the banner
+AppLovinSdkBindings.LoadBannerWithView(bannerView);
+```
+
+### App Open Ads
+
+Show app open / splash ads:
+
+```csharp
+AppLovinSdkBindings.ShowAppOpenAdWithAdid("YOUR_AD_UNIT_ID");
+```
+
+### Mediation Debugger
+
+Display the mediation debugger for testing:
+
+```csharp
+AppLovinSdkBindings.ShowMeditationDebugger();
+```
+
+## Requirements
+
+- .NET 10+
+- iOS 15.0+
+- Xcode 16+

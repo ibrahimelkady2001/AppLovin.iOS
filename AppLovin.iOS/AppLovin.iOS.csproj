@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-ios</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+    <IsTrimmable>true</IsTrimmable>
+    <RootNamespace>AppLovin.iOS</RootNamespace>
+    <AssemblyName>AppLovin.iOS</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <XcodeProject Include="../native/NewBinding/NewBinding.xcodeproj">
+      <SchemeName>NewBinding</SchemeName>
+      <SharpieNamespace>AppLovin.iOS</SharpieNamespace>
+      <SharpieBind>true</SharpieBind>
+    </XcodeProject>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="0.0.1-pre1" PrivateAssets="all" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+<Project>
+  <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' Or $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
+    <NativeReference Include="$(MSBuildThisFileDirectory)../AppLovinSDK.xcframework">
+      <Kind>Framework</Kind>
+      <Frameworks>AdSupport,AppTrackingTransparency,AudioToolbox,AVFoundation,CoreGraphics,CoreMedia,CoreMotion,CoreTelephony,Foundation,MessageUI,SafariServices,StoreKit,SystemConfiguration,UIKit,WebKit</Frameworks>
+      <SmartLink>true</SmartLink>
+      <LinkWith>z</LinkWith>
+      <EmbedAndSign>true</EmbedAndSign>
+    </NativeReference>
+    <NativeReference Include="$(MSBuildThisFileDirectory)../NewBindingiOS.xcframework">
+      <Kind>Framework</Kind>
+      <SmartLink>true</SmartLink>
+      <ForceLoad>true</ForceLoad>
+      <EmbedAndSign>true</EmbedAndSign>
+    </NativeReference>
+  </ItemGroup>
+</Project>
