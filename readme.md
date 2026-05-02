@@ -26,70 +26,50 @@ Call this once at app startup, before loading any ads.
 
 ### Interstitial Ads
 
-Show full-screen interstitial ads:
-
 ```csharp
-// Show an interstitial ad
 AppLovinSdkBindings.ShowInterstitialAdWithAdid("YOUR_AD_UNIT_ID");
 ```
 
 ### Rewarded Ads
 
-Load and show rewarded video ads with callbacks:
-
 ```csharp
-// Load a rewarded ad
 AppLovinSdkBindings.LoadRewardedAdWithAdidd("YOUR_AD_UNIT_ID");
 
-// Load with completion callbacks
 AppLovinSdkBindings.LoadRewardedAdWithAdidd(
     "YOUR_AD_UNIT_ID",
     () => Console.WriteLine("Ad loaded"),
     () => Console.WriteLine("Ad failed to load")
 );
 
-// Check if a rewarded ad is loaded
 bool isLoaded = AppLovinSdkBindings.RewardedAdLoaded().BoolValue;
 
-// Show the rewarded ad
 AppLovinSdkBindings.ShowRewardedAdWithAdid("YOUR_AD_UNIT_ID");
 ```
 
 ### Banner Ads
 
-Create and display banner ads (requires platform-specific code):
+Use `AppLovinBanner` — a MAUI `View` subclass:
 
-```csharp
-// Create a banner view for a given ad unit
-var bannerView = AppLovinSdkBindings.GetBannerWithAdid("YOUR_AD_UNIT_ID");
+**XAML:**
+```xml
+xmlns:al="clr-namespace:AppLovin.iOS"
+...
+<al:AppLovinBanner AdUnitId="YOUR_AD_UNIT_ID" />
 ```
 
-In a MAUI page, use `ContentView` with a `HandlerChanged` event to add the native banner:
-
+**Code-behind:**
 ```csharp
-// XAML: <ContentView x:Name="bannerContainer" HeightRequest="50" />
-bannerContainer.HandlerChanged += (s, e) =>
-{
-    if (bannerContainer.Handler?.PlatformView is UIKit.UIView parentView)
-    {
-        var adView = AppLovinSdkBindings.GetBannerWithAdid("YOUR_AD_UNIT_ID");
-        parentView.AddSubview(adView);
-        AppLovinSdkBindings.LoadBannerWithView(adView);
-    }
-};
+var banner = new AppLovinBanner { AdUnitId = "YOUR_AD_UNIT_ID" };
+myLayout.Children.Add(banner);
 ```
 
 ### App Open Ads
-
-Show app open / splash ads:
 
 ```csharp
 AppLovinSdkBindings.ShowAppOpenAdWithAdid("YOUR_AD_UNIT_ID");
 ```
 
 ### Mediation Debugger
-
-Display the mediation debugger for testing:
 
 ```csharp
 AppLovinSdkBindings.ShowMeditationDebugger();
